@@ -6,9 +6,13 @@ import {
   Switch,
   Route,
   Link,
-  useParams,
   useLocation,
 } from 'react-router-dom';
+import Login from './screens/Login';
+import SignUp from './screens/SignUp';
+import ReviewList from './screens/ReviewList';
+import ReviewCreate from './screens/ReviewCreate';
+import ReviewUpdate from './screens/ReviewUpdate';
 
 class App extends Component {
   render() {
@@ -17,35 +21,17 @@ class App extends Component {
           <div>
             <nav>
               <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/users">Users</Link>
-                </li>
-                <li>
-                  <Link to="/about/3">About Params</Link>
-                </li>
+                <li><Link to="/">111</Link></li>
+                <li><Link to="/sign_up">222</Link></li>
+                <li><Link to="/update/3">333</Link></li>
               </ul>
             </nav>
-            {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
             <Switch>
-              <Route exact path="/">
-                <Home/>
-              </Route>
-              <Route path="/about/:id">
-                <About/>
-              </Route>
-              <Route path="/about">
-                <About/>
-              </Route>
-              <Route path="/users">
-                <Users/>
-              </Route>
+              <Route exact path="/" component={Login}/>
+              <Route path="/sign_up" component={SignUp}/>
+              <Route path="/list" component={ReviewList}/>
+              <Route path="/create" component={ReviewCreate}/>
+              <Route path="/update/:id" component={ReviewUpdate}/>
               <Route path="*">
                 <NoMatch/>
               </Route>
@@ -54,20 +40,6 @@ class App extends Component {
         </Router>
     );
   }
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  let {id} = useParams();
-
-  return <h2>About {id}</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 function NoMatch() {
