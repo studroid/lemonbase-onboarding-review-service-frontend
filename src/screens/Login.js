@@ -11,4 +11,5 @@ function Login(props) {
   );
 }
 
+Login.routeName = '/';
 export default Login;

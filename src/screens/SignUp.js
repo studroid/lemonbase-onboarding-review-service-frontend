@@ -6,4 +6,5 @@ function SignUp(props) {
     );
 }
 
+SignUp.routeName = "/sign_up"
 export default SignUp;

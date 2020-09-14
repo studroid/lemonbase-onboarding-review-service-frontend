@@ -20,11 +20,11 @@ function App(props) {
       <AuthContext.Provider value={false}>
         <Router>
           <Switch>
-            <Route exact path="/" component={Login}/>
-            <Route path="/sign_up" component={SignUp}/>
-            <PrivateRoute path="/list" component={ReviewList}/>
-            <PrivateRoute path="/create" component={ReviewCreate}/>
-            <PrivateRoute path="/update/:id" component={ReviewUpdate}/>
+            <Route exact path={Login.routeName} component={Login}/>
+            <Route path={SignUp.routeName} component={SignUp}/>
+            <PrivateRoute path={ReviewList.routeName} component={ReviewList}/>
+            <PrivateRoute path={ReviewCreate.routeName} component={ReviewCreate}/>
+            <PrivateRoute path={ReviewUpdate.routeName} component={ReviewUpdate}/>
             <Route path="*">
               <NoMatch/>
             </Route>
