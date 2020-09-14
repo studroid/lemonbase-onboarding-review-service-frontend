@@ -3,7 +3,6 @@ import {hot} from 'react-hot-loader';
 import './App.css';
 import {
   BrowserRouter as Router,
-  Link,
   Route,
   Switch,
   useLocation,
@@ -13,28 +12,26 @@ import SignUp from './screens/SignUp';
 import ReviewList from './screens/ReviewList';
 import ReviewCreate from './screens/ReviewCreate';
 import ReviewUpdate from './screens/ReviewUpdate';
+import PrivateRoute from './PrivateRoute';
+import {AuthContext} from './contexts/auth';
 
 function App(props) {
-    return (
+  return (
+      <AuthContext.Provider value={false}>
         <Router>
-            <nav>
-              <ul>
-                <li><Link to="/sign_up">회원가입</Link></li>
-                <li><Link to="/update/3">333</Link></li>
-              </ul>
-            </nav>
-            <Switch>
-              <Route exact path="/" component={Login}/>
-              <Route path="/sign_up" component={SignUp}/>
-              <Route path="/list" component={ReviewList}/>
-              <Route path="/create" component={ReviewCreate}/>
-              <Route path="/update/:id" component={ReviewUpdate}/>
-              <Route path="*">
-                <NoMatch/>
-              </Route>
-            </Switch>
+          <Switch>
+            <Route exact path="/" component={Login}/>
+            <Route path="/sign_up" component={SignUp}/>
+            <PrivateRoute path="/list" component={ReviewList}/>
+            <PrivateRoute path="/create" component={ReviewCreate}/>
+            <PrivateRoute path="/update/:id" component={ReviewUpdate}/>
+            <Route path="*">
+              <NoMatch/>
+            </Route>
+          </Switch>
         </Router>
-    );
+      </AuthContext.Provider>
+  );
 }
 
 function NoMatch() {
