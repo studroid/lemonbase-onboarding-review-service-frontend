@@ -1,10 +1,7 @@
-import React, {Component} from 'react';
-import ReviewCreate from './ReviewCreate';
+import React from 'react';
 
-class SignUp extends Component {
-  render() {
+function SignUp(props) {
     return <h2>SignUp</h2>;
-  }
 }
 
 export default SignUp;

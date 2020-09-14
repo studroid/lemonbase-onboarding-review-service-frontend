@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
-
-class ReviewUpdate extends Component {
-  render() {
-    const params = this.props.match.params;
-    return <h2>ReviewUpdate{params.id}</h2>;
-  }
+import React from 'react';
+import { useParams } from "react-router-dom"
+function ReviewUpdate(props) {
+    let {id} = useParams();
+    return <h2>ReviewUpdate{id}</h2>;
 }
 
 export default ReviewUpdate;

@@ -1,9 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Login extends Component {
-  render() {
+function Login(props) {
     return <h2>Login</h2>;
-  }
 }
 
 export default Login;

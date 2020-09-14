@@ -1,9 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class ReviewCreate extends Component {
-  render() {
+function ReviewCreate(props) {
     return <h2>ReviewCreate</h2>;
-  }
 }
 
 export default ReviewCreate;

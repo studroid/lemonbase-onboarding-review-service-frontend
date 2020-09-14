@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {hot} from 'react-hot-loader';
 import './App.css';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
+  Route,
+  Switch,
   useLocation,
 } from 'react-router-dom';
 import Login from './screens/Login';
@@ -14,15 +14,12 @@ import ReviewList from './screens/ReviewList';
 import ReviewCreate from './screens/ReviewCreate';
 import ReviewUpdate from './screens/ReviewUpdate';
 
-class App extends Component {
-  render() {
+function App(props) {
     return (
         <Router>
-          <div>
             <nav>
               <ul>
-                <li><Link to="/">111</Link></li>
-                <li><Link to="/sign_up">222</Link></li>
+                <li><Link to="/sign_up">회원가입</Link></li>
                 <li><Link to="/update/3">333</Link></li>
               </ul>
             </nav>
@@ -36,10 +33,8 @@ class App extends Component {
                 <NoMatch/>
               </Route>
             </Switch>
-          </div>
         </Router>
     );
-  }
 }
 
 function NoMatch() {

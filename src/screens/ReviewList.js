@@ -1,10 +1,7 @@
-import React, {Component} from 'react';
-import ReviewCreate from './ReviewCreate';
+import React from 'react';
 
-class ReviewList extends Component {
-  render() {
+function ReviewList(props) {
     return <h2>ReviewList</h2>;
-  }
 }
 
 export default ReviewList;
