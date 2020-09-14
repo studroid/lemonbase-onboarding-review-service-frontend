@@ -31,7 +31,13 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/review_service': 'http://localhost:8000',
+      changeOrigin: true,
     },
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        BACKEND_BASE: JSON.stringify("/review_service/"),
+      }),
+  ],
 };
