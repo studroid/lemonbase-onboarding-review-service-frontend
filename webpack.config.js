@@ -27,7 +27,10 @@ module.exports = {
     contentBase: path.join(__dirname, "public/"),
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
-    hotOnly: true
+    hotOnly: true,
+    proxy: {
+      '/review_service': 'http://localhost:8000',
+    },
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };
