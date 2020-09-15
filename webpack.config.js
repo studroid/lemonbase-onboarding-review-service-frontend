@@ -31,7 +31,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/review_service': 'http://localhost:8000',
-      changeOrigin: true,
+      // changeOrigin: true,
     },
   },
   plugins: [
