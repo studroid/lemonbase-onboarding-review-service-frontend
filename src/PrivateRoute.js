@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {useAuth} from './contexts/auth';
-import Login from './screens/Login';
+import SignIn from './screens/SignIn';
 
 function PrivateRoute({component: Component, ...rest}) {
   const isAuthenticated = useAuth();
@@ -10,7 +10,7 @@ function PrivateRoute({component: Component, ...rest}) {
           isAuthenticated ? (
               <Component {...props}/>
           ) : (
-              <Redirect to={Login.routeName}/>
+              <Redirect to={SignIn.routeName}/>
           )}
       />
   );

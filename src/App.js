@@ -7,7 +7,7 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import Login from './screens/Login';
+import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
 import ReviewList from './screens/ReviewList';
 import ReviewCreate from './screens/ReviewCreate';
@@ -20,7 +20,7 @@ function App(props) {
       <AuthContext.Provider value={false}>
         <Router>
           <Switch>
-            <Route exact path={Login.routeName} component={Login}/>
+            <Route exact path={SignIn.routeName} component={SignIn}/>
             <Route path={SignUp.routeName} component={SignUp}/>
             <PrivateRoute path={ReviewList.routeName} component={ReviewList}/>
             <PrivateRoute path={ReviewCreate.routeName} component={ReviewCreate}/>

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Form, Input} from '../components/AuthForm';
 import SignUp from './SignUp';
 
-function Login(props) {
+function SignIn(props) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
       <Form>
         <Input type="email" placholder="Email"/>
@@ -15,5 +18,5 @@ function Login(props) {
   );
 }
 
-Login.routeName = '/';
-export default Login;
+SignIn.routeName = '/';
+export default SignIn;

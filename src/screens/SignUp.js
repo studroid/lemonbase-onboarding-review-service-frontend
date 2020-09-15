@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Error, Form, Input} from '../components/AuthForm';
 import {useHistory} from 'react-router-dom';
-import Login from './Login';
+import SignIn from './SignIn';
 import APIHandler from '../APIHandler';
 
 function SignUp(props) {
@@ -20,7 +20,7 @@ function SignUp(props) {
     }).then(result => {
       if (result.status === 201) {
         alert('회원가입이 완료되었습니다!');
-        history.push(Login.routeName);
+        history.push(SignIn.routeName);
       }
     }).catch(e => {
       setIsError(true);
