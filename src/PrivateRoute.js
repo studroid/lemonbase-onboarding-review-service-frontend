@@ -4,7 +4,7 @@ import {useAuth} from './contexts/auth';
 import SignIn from './screens/SignIn';
 
 function PrivateRoute({component: Component, ...rest}) {
-  const isAuthenticated = useAuth();
+  const {isAuthenticated} = useAuth();
   return (
       <Route {...rest} render={(props) =>
           isAuthenticated ? (

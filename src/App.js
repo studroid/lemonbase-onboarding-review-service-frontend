@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {hot} from 'react-hot-loader';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  BrowserRouter as Router, Link,
   Route,
   Switch,
   useLocation,
@@ -14,17 +14,33 @@ import ReviewCreate from './screens/ReviewCreate';
 import ReviewUpdate from './screens/ReviewUpdate';
 import PrivateRoute from './PrivateRoute';
 import {AuthContext} from './contexts/auth';
+import {Button} from './components/AuthForm';
 
 function App(props) {
+  const [isAuthenticated, setAuth] = useState(false);
+
+  function signOut() {
+    setAuth(false);
+  }
+
   return (
-      <AuthContext.Provider value={false}>
+      <AuthContext.Provider value={{isAuthenticated, setAuth}}>
         <Router>
+          <nav>
+            <ul>
+              <li><Link to={SignIn.routeName}>Home</Link></li>
+              {isAuthenticated && <li><Link onClick={signOut}>Sign Out</Link></li>}
+            </ul>
+          </nav>
+
           <Switch>
             <Route exact path={SignIn.routeName} component={SignIn}/>
             <Route path={SignUp.routeName} component={SignUp}/>
             <PrivateRoute path={ReviewList.routeName} component={ReviewList}/>
-            <PrivateRoute path={ReviewCreate.routeName} component={ReviewCreate}/>
-            <PrivateRoute path={ReviewUpdate.routeName} component={ReviewUpdate}/>
+            <PrivateRoute path={ReviewCreate.routeName}
+                          component={ReviewCreate}/>
+            <PrivateRoute path={ReviewUpdate.routeName}
+                          component={ReviewUpdate}/>
             <Route path="*">
               <NoMatch/>
             </Route>

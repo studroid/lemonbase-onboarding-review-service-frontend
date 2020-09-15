@@ -17,10 +17,12 @@ function SignUp(props) {
       email,
       name,
       password,
-    }).then(result => {
+    }, {withCredentials: true}).then(result => {
       if (result.status === 201) {
         alert('회원가입이 완료되었습니다!');
         history.push(SignIn.routeName);
+      } else {
+        setIsError(true);
       }
     }).catch(e => {
       setIsError(true);
