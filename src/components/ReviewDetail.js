@@ -3,9 +3,9 @@ import {Form, Input, SmallButton} from './StyledComponents';
 
 function ReviewDetail(props) {
   const defaultData = props.defaultData || {};
-  const [name, setName] = useState('');
-  const [reviewees, setReviewees] = useState([]);
-  const [question, setQuestion] = useState({title: '', description: ''});
+  const [name, setName] = useState(defaultData.name || '');
+  const [reviewees, setReviewees] = useState(defaultData.reviewees || []);
+  const [question, setQuestion] = useState(defaultData.question || {title: '', description: ''});
 
   function buildDetailData() {
     return {
@@ -14,12 +14,6 @@ function ReviewDetail(props) {
       question,
     };
   }
-
-  useEffect(() => {
-    setName(defaultData.name || '');
-    setReviewees(defaultData.reviewees || []);
-    setQuestion(defaultData.question || {title: '', description: ''});
-  }, [defaultData]);
 
   return (
       <Form>
