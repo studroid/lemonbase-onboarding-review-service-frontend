@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import APIHandler from '../APIHandler';
 import Table from '../components/Table';
-import {Error} from '../components/AuthForm';
-import {useHistory} from 'react-router-dom';
+import {SmallButton, Error} from '../components/StyledComponents';
+import {Link, useHistory} from 'react-router-dom';
 import ReviewUpdate from './ReviewUpdate';
+import ReviewCreate from './ReviewCreate';
 
 function ReviewList(props) {
   const labels = ['리뷰 정책 이름', '생성자', '생성일'];
@@ -32,6 +33,7 @@ function ReviewList(props) {
       <div>
         <h2>ReviewList</h2>
         <Table labels={labels} items={list} onItemClick={onPolicyClicked}/>
+        <Link to={ReviewCreate.routeName}><SmallButton>리뷰 정책 생성</SmallButton></Link>
 
         {isError && <Error>데이터를 가져오는 도중 문제가 발생했습니다. 관리자에게 문의하세요!</Error>}
       </div>

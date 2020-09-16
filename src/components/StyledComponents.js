@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Form = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 `;
 
 const Input = styled.input`
@@ -22,8 +22,12 @@ const Button = styled.button`
   font-size: 0.8rem;
 `;
 
+const SmallButton = styled(Button)`
+  width: 50%;
+`;
+
 const Error = styled.div`
   background-color: red;
 `;
 
-export {Form, Input, Button, Error};
+export {Form, Input, Button, SmallButton, Error};
