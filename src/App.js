@@ -14,7 +14,6 @@ import ReviewCreate from './screens/ReviewCreate';
 import ReviewUpdate from './screens/ReviewUpdate';
 import PrivateRoute from './PrivateRoute';
 import {AuthContext} from './contexts/auth';
-import {Button} from './components/AuthForm';
 
 function App(props) {
   const [isAuthenticated, setAuth] = useState(false);
@@ -29,7 +28,7 @@ function App(props) {
           <nav>
             <ul>
               <li><Link to={SignIn.routeName}>Home</Link></li>
-              {isAuthenticated && <li><Link onClick={signOut}>Sign Out</Link></li>}
+              {isAuthenticated && <li><Link to="/" onClick={signOut}>Sign Out</Link></li>}
             </ul>
           </nav>
 
