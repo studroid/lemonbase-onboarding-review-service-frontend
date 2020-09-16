@@ -14,6 +14,7 @@ function ReviewList(props) {
   const history = useHistory();
 
   function onPolicyClicked(policy_id) {
+    // Get first and push to the ReviewUpdate would be better.
     history.push(ReviewUpdate.routeBase + `/${policy_id}`);
   }
 
