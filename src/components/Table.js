@@ -7,7 +7,7 @@ function Table(props) {
   );
 
   const listItems = props.items ? props.items.map(
-      (item, index) => <TableItem key={index} item={item}/>) : null;
+      (item, index) => <TableItem key={index} item={item} onItemClick={props.onItemClick}/>) : null;
 
   return (
       <table>

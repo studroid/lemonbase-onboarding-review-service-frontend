@@ -2,11 +2,19 @@ import React, {useEffect, useState} from 'react';
 import APIHandler from '../APIHandler';
 import Table from '../components/Table';
 import {Error} from '../components/AuthForm';
+import {useHistory} from 'react-router-dom';
+import ReviewUpdate from './ReviewUpdate';
 
 function ReviewList(props) {
   const labels = ['리뷰 정책 이름', '생성자', '생성일'];
   const [list, setList] = useState(null);
   const [isError, setIsError] = useState(false);
+
+  const history = useHistory();
+
+  function onPolicyClicked(policy_id) {
+    history.push(ReviewUpdate.routeBase + `/${policy_id}`);
+  }
 
   useEffect(() => {
     APIHandler.get('/policy').then(result => {
@@ -23,7 +31,7 @@ function ReviewList(props) {
   return (
       <div>
         <h2>ReviewList</h2>
-        <Table labels={labels} items={list}/>
+        <Table labels={labels} items={list} onItemClick={onPolicyClicked}/>
 
         {isError && <Error>데이터를 가져오는 도중 문제가 발생했습니다. 관리자에게 문의하세요!</Error>}
       </div>

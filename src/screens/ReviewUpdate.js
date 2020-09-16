@@ -6,5 +6,6 @@ function ReviewUpdate(props) {
   return <h2>ReviewUpdate{id}</h2>;
 }
 
-ReviewUpdate.routeName = '/update/:id';
+ReviewUpdate.routeBase = '/update';
+ReviewUpdate.routeName = ReviewUpdate.routeBase + '/:id';
 export default ReviewUpdate;
