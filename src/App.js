@@ -16,7 +16,13 @@ import PrivateRoute from './PrivateRoute';
 import {AuthContext} from './contexts/auth';
 
 function App(props) {
-  const [isAuthenticated, setAuth] = useState(false);
+  const previousAuthState = JSON.parse(localStorage.getItem("isAuthenticated"));
+  const [isAuthenticated, setAuthState] = useState(previousAuthState);
+
+  function setAuth(flag) {
+    localStorage.setItem('isAuthenticated', JSON.stringify(flag));
+    setAuthState(flag);
+  }
 
   function signOut() {
     setAuth(false);
