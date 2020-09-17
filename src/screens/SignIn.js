@@ -5,8 +5,9 @@ import SignUp from './SignUp';
 import APIHandler from '../APIHandler';
 import ReviewList from './ReviewList';
 import {useAuth} from '../contexts/auth';
+import SuperComponent from '../super/SuperComponent';
 
-function SignIn(props) {
+function Component(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
@@ -52,5 +53,10 @@ function SignIn(props) {
   );
 }
 
-SignIn.routeName = '/';
+const SignIn = {
+  ...SuperComponent,
+  routeName: '/',
+  component: Component,
+};
+
 export default SignIn;

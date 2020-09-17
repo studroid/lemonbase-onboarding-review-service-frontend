@@ -4,8 +4,9 @@ import ReviewDetail from '../components/ReviewDetail';
 import APIHandler from '../APIHandler';
 import {Error} from '../components/StyledComponents';
 import ReviewList from './ReviewList';
+import SuperComponent from '../super/SuperComponent';
 
-function ReviewCreate(props) {
+function Component(props) {
   const [isError, setIsError] = useState(false);
 
   const history = useHistory();
@@ -33,5 +34,10 @@ function ReviewCreate(props) {
   );
 }
 
-ReviewCreate.routeName = '/create';
+const ReviewCreate = {
+  ...SuperComponent,
+  routeName: '/create',
+  component: Component,
+}
+
 export default ReviewCreate;

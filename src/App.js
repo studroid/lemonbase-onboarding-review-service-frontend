@@ -60,13 +60,13 @@ function App(props) {
           </nav>
 
           <Switch>
-            <Route exact path={SignIn.routeName} component={SignIn}/>
-            <Route path={SignUp.routeName} component={SignUp}/>
-            <PrivateRoute path={ReviewList.routeName} component={ReviewList}/>
+            <Route exact path={SignIn.routeName} component={SignIn.component}/>
+            <Route path={SignUp.routeName} component={SignUp.component}/>
+            <PrivateRoute path={ReviewList.routeName} component={ReviewList.component}/>
             <PrivateRoute path={ReviewCreate.routeName}
-                          component={ReviewCreate}/>
+                          component={ReviewCreate.component}/>
             <PrivateRoute path={ReviewUpdate.routeName}
-                          component={ReviewUpdate}/>
+                          component={ReviewUpdate.component}/>
             <Route path="*">
               <NoMatch/>
             </Route>

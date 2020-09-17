@@ -3,8 +3,9 @@ import {Button, Error, Form, Input} from '../components/StyledComponents';
 import {useHistory} from 'react-router-dom';
 import SignIn from './SignIn';
 import APIHandler from '../APIHandler';
+import SuperComponent from '../super/SuperComponent';
 
-function SignUp(props) {
+function Component(props) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -47,5 +48,10 @@ function SignUp(props) {
   );
 }
 
-SignUp.routeName = '/sign_up';
+const SignUp = {
+  ...SuperComponent,
+  routeName: '/sign_up',
+  component: Component,
+};
+
 export default SignUp;
