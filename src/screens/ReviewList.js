@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import APIHandler from '../APIHandler';
 import Table from '../components/Table';
-import {SmallButton, Error} from '../components/StyledComponents';
+import {Error, SmallButton} from '../components/StyledComponents';
 import {Link, useHistory} from 'react-router-dom';
 import ReviewUpdate from './ReviewUpdate';
 import ReviewCreate from './ReviewCreate';
+import SuperComponent from '../super/SuperComponent';
 
-function ReviewList(props) {
+function Component(props) {
   const labels = ['리뷰 정책 이름', '생성자', '생성일'];
   const [list, setList] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -50,5 +51,10 @@ function ReviewList(props) {
   );
 }
 
-ReviewList.routeName = '/list';
+const ReviewList = {
+  ...SuperComponent,
+  routeName: '/list',
+  component: Component,
+}
+
 export default ReviewList;

@@ -4,8 +4,9 @@ import ReviewDetail from '../components/ReviewDetail';
 import {Error, SmallButton} from '../components/StyledComponents';
 import APIHandler from '../APIHandler';
 import ReviewList from './ReviewList';
+import SuperComponent from '../super/SuperComponent';
 
-function ReviewUpdate(props) {
+function Component(props) {
   const [isError, setIsError] = useState(false);
 
   const history = useHistory();
@@ -49,6 +50,12 @@ function ReviewUpdate(props) {
   );
 }
 
-ReviewUpdate.routeBase = '/update';
-ReviewUpdate.routeName = ReviewUpdate.routeBase + '/:id';
+const routeBase = '/update';
+
+const ReviewUpdate = {
+  ...SuperComponent,
+  routeBase: routeBase,
+  routeName: `${routeBase}/:id`,
+  component: Component,
+}
 export default ReviewUpdate;
