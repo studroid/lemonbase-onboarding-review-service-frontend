@@ -13,7 +13,7 @@ function ReviewUpdate(props) {
 
   function onUpdateClicked(detail_data) {
     APIHandler.put(`/policy/${id}/`, detail_data).then(result => {
-      if (result.status == 200) {
+      if (result.status === 200) {
         alert('리뷰 정책이 변경되었습니다!');
         history.push(ReviewList.routeName);
       } else {
@@ -27,7 +27,7 @@ function ReviewUpdate(props) {
 
   function onDeleteClick() {
     APIHandler.delete(`/policy/${id}`).then(result => {
-      if (result.status == 204) {
+      if (result.status === 204) {
         alert('리뷰 정책이 삭제되었습니다.');
         history.push(ReviewList.routeName);
       } else {

@@ -14,10 +14,22 @@ import ReviewCreate from './screens/ReviewCreate';
 import ReviewUpdate from './screens/ReviewUpdate';
 import PrivateRoute from './PrivateRoute';
 import {AuthContext} from './contexts/auth';
+import APIHandler from './APIHandler';
 
 function App(props) {
-  const previousAuthState = JSON.parse(localStorage.getItem("isAuthenticated"));
+  const previousAuthState = JSON.parse(localStorage.getItem('isAuthenticated'));
   const [isAuthenticated, setAuthState] = useState(previousAuthState);
+
+  function postSignOut() {
+    return APIHandler.post(`/account/sign_out/`).then(result => {
+      if (result.status === 200) {
+        return true;
+      }
+      return false;
+    }).catch(e => {
+      return false;
+    });
+  }
 
   function setAuth(flag) {
     localStorage.setItem('isAuthenticated', JSON.stringify(flag));
@@ -25,7 +37,15 @@ function App(props) {
   }
 
   function signOut() {
-    setAuth(false);
+    postSignOut().then(result => {
+      if (result === true) {
+        setAuth(false);
+      } else {
+        alert('로그아웃에 실패했습니다. 다시 시도해보세요!');
+      }
+    }).catch(e => {
+      alert('로그아웃에 실패했습니다. 다시 시도해보세요!');
+    });
   }
 
   return (
@@ -34,7 +54,8 @@ function App(props) {
           <nav>
             <ul>
               <li><Link to={SignIn.routeName}>Home</Link></li>
-              {isAuthenticated && <li><Link to="/" onClick={signOut}>Sign Out</Link></li>}
+              {isAuthenticated &&
+              <li><Link to="/" onClick={signOut}>Sign Out</Link></li>}
             </ul>
           </nav>
 
