@@ -9,40 +9,22 @@ import SuperComponent from '../super/SuperComponent';
 
 function Component(props) {
   const labels = ['리뷰 정책 이름', '생성자', '생성일'];
-  const [list, setList] = useState(null);
   const [isError, setIsError] = useState(false);
 
   const history = useHistory();
 
   function onPolicyClicked(policy_id) {
-    APIHandler.get(`/policy/${policy_id}/`).then(result => {
-      if (result.status === 200) {
-        history.push(ReviewUpdate.routeBase + `/${policy_id}`,
-            {defaultData: result.data});
-      } else {
-        setIsError(true);
-      }
+    ReviewUpdate.prepare(policy_id).then(data => {
+      history.push(ReviewUpdate.routeName, {defaultData: data});
     }).catch(e => {
       setIsError(true);
-    });
+    })
   }
-
-  useEffect(() => {
-    APIHandler.get('/policy').then(result => {
-      if (result.status === 200) {
-        setList(result.data);
-      } else {
-        setIsError(true);
-      }
-    }).catch(e => {
-      setIsError(true);
-    });
-  }, []);
 
   return (
       <div>
         <h2>ReviewList</h2>
-        <Table labels={labels} items={list} onItemClick={onPolicyClicked}/>
+        <Table labels={labels} items={props.location.state.defaultData} onItemClick={onPolicyClicked}/>
         <Link to={ReviewCreate.routeName}>
           <SmallButton>리뷰 정책 생성</SmallButton>
         </Link>
@@ -51,10 +33,23 @@ function Component(props) {
   );
 }
 
+function prepare() {
+  return APIHandler.get(`/policy/`).then(result => {
+    if (result.status === 200) {
+      return result.data;
+    } else {
+      throw `Status code returned: ${result.status}`;
+    }
+  }).catch(e => {
+    throw 'Error';
+  });
+}
+
 const ReviewList = {
   ...SuperComponent,
   routeName: '/list',
   component: Component,
+  prepare: prepare,
 }
 
 export default ReviewList;

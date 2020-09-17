@@ -6,6 +6,7 @@ import APIHandler from '../APIHandler';
 import ReviewList from './ReviewList';
 import {useAuth} from '../contexts/auth';
 import SuperComponent from '../super/SuperComponent';
+import ReviewUpdate from './ReviewUpdate';
 
 function Component(props) {
   const [email, setEmail] = useState('');
@@ -22,8 +23,6 @@ function Component(props) {
     }).then(result => {
       if (result.status === 200) {
         setAuth(true);
-        // Render again if this function is called, so <Redirect/> below is enough.
-        // history.push(ReviewList.routeName);
       } else {
         setIsError(true);
       }
@@ -33,7 +32,13 @@ function Component(props) {
   }
 
   if (isAuthenticated) {
-    return <Redirect to={ReviewList.routeName}/>;
+    // return <Redirect to={ReviewList.routeName}/>;
+    ReviewList.prepare().then(data => {
+      history.push(ReviewList.routeName, {defaultData: data});
+    }).catch(e => {
+      setIsError(true);
+    });
+    return <div></div>;
   }
 
   return (

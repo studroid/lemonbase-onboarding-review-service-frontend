@@ -50,12 +50,24 @@ function Component(props) {
   );
 }
 
-const routeBase = '/update';
+const routeName = '/update';
+
+function prepare(id) {
+  return APIHandler.get(`/policy/${id}/`).then(result => {
+    if (result.status === 200) {
+      return result.data;
+    } else {
+      throw `Status code returned: ${result.status}`;
+    }
+  }).catch(e => {
+    throw 'Error';
+  });
+}
 
 const ReviewUpdate = {
   ...SuperComponent,
-  routeBase: routeBase,
-  routeName: `${routeBase}/:id`,
+  routeName: routeName,
   component: Component,
-}
+  prepare: prepare,
+};
 export default ReviewUpdate;

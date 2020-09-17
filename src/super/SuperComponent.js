@@ -9,9 +9,17 @@ function Component(props) {
   );
 }
 
+function prepare() {
+  alert('Prepare is not implemented');
+  return new Promise((resolve, reject) => {
+    reject();
+  });
+}
+
 const SuperComponent = {
   routeName: '/',
   component: Component,
+  prepare: prepare,
 };
 
 export default SuperComponent;
