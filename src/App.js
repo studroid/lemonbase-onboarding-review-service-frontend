@@ -37,10 +37,10 @@ function App(props) {
   }
 
   function signOut() {
+    setAuth(false);
     postSignOut().then(result => {
-      if (result === true) {
-        setAuth(false);
-      } else {
+      if (result === false) {
+        setAuth(true);
         alert('로그아웃에 실패했습니다. 다시 시도해보세요!');
       }
     }).catch(e => {
