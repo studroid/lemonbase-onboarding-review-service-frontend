@@ -22,10 +22,7 @@ function App(props) {
 
   function postSignOut() {
     return APIHandler.post(`/account/sign_out/`).then(result => {
-      if (result.status === 200) {
-        return true;
-      }
-      return false;
+      return result.status === 200;
     }).catch(e => {
       return false;
     });
