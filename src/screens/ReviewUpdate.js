@@ -53,18 +53,6 @@ function Component(props) {
 
 const routeBase = '/update';
 
-function prepare(id) {
-  return APIHandler.get(`/policy/${id}/`).then(result => {
-    if (result.status === 200) {
-      return result.data;
-    } else {
-      throw `Status code returned: ${result.status}`;
-    }
-  }).catch(e => {
-    throw 'Error';
-  });
-}
-
 const ReviewUpdate = {
   ...SuperComponent,
   routeBase: routeBase,
@@ -72,4 +60,19 @@ const ReviewUpdate = {
   component: Component,
   prepare: prepare,
 };
+
+function prepare(history, id) {
+  return APIHandler.get(`/policy/${id}/`).then(result => {
+    if (result.status === 200) {
+      return result.data;
+    } else {
+      throw `Status code returned: ${result.status}`;
+    }
+  }).then(data => {
+    history.push(`${ReviewUpdate.routeBase}/${id}`, {defaultData: data});
+  }).catch(e => {
+    throw 'Error';
+  });
+}
+
 export default ReviewUpdate;

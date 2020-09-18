@@ -14,17 +14,16 @@ function Component(props) {
   const history = useHistory();
 
   function onPolicyClicked(policy_id) {
-    ReviewUpdate.prepare(policy_id).then(data => {
-      history.push(`${ReviewUpdate.routeBase}/${policy_id}`, {defaultData: data});
-    }).catch(e => {
+    ReviewUpdate.prepare(history, policy_id).catch(e => {
       setIsError(true);
-    })
+    });
   }
 
   return (
       <div>
         <h2>ReviewList</h2>
-        <Table labels={labels} items={props.location.state.defaultData} onItemClick={onPolicyClicked}/>
+        <Table labels={labels} items={props.location.state.defaultData}
+               onItemClick={onPolicyClicked}/>
         <Link to={ReviewCreate.routeName}>
           <SmallButton>리뷰 정책 생성</SmallButton>
         </Link>
@@ -50,6 +49,6 @@ const ReviewList = {
   routeName: '/list',
   component: Component,
   prepare: prepare,
-}
+};
 
 export default ReviewList;
