@@ -3,8 +3,8 @@ import {useHistory} from 'react-router-dom';
 import ReviewDetail from '../components/ReviewDetail';
 import APIHandler from '../APIHandler';
 import {Error} from '../components/StyledComponents';
-import ReviewList from './ReviewList';
 import SuperComponent from '../super/SuperComponent';
+import SignIn from './SignIn';
 
 function Component(props) {
   const [isError, setIsError] = useState(false);
@@ -15,7 +15,7 @@ function Component(props) {
     APIHandler.post('/policy/', detail_data).then(result => {
       if (result.status == 201) {
         alert('리뷰 정책이 생성되었습니다!');
-        history.push(ReviewList.routeName);
+        history.push(SignIn.routeName);
       } else {
         setIsError(true);
       }

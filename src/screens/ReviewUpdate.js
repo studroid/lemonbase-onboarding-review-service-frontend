@@ -5,6 +5,7 @@ import {Error, SmallButton} from '../components/StyledComponents';
 import APIHandler from '../APIHandler';
 import ReviewList from './ReviewList';
 import SuperComponent from '../super/SuperComponent';
+import SignIn from './SignIn';
 
 function Component(props) {
   const [isError, setIsError] = useState(false);
@@ -16,7 +17,7 @@ function Component(props) {
     APIHandler.put(`/policy/${id}/`, detail_data).then(result => {
       if (result.status === 200) {
         alert('리뷰 정책이 변경되었습니다!');
-        history.push(ReviewList.routeName);
+        history.push(SignIn.routeName);
       } else {
         setIsError(true);
       }
@@ -50,7 +51,7 @@ function Component(props) {
   );
 }
 
-const routeName = '/update';
+const routeBase = '/update';
 
 function prepare(id) {
   return APIHandler.get(`/policy/${id}/`).then(result => {
@@ -66,7 +67,8 @@ function prepare(id) {
 
 const ReviewUpdate = {
   ...SuperComponent,
-  routeName: routeName,
+  routeBase: routeBase,
+  routeName: routeBase + '/:id',
   component: Component,
   prepare: prepare,
 };

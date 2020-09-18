@@ -15,7 +15,7 @@ function Component(props) {
 
   function onPolicyClicked(policy_id) {
     ReviewUpdate.prepare(policy_id).then(data => {
-      history.push(ReviewUpdate.routeName, {defaultData: data});
+      history.push(`${ReviewUpdate.routeBase}/${policy_id}`, {defaultData: data});
     }).catch(e => {
       setIsError(true);
     })
