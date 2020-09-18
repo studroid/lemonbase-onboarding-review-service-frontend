@@ -35,6 +35,8 @@ function SignIn(props) {
     return <Redirect to={ReviewList.routeName}/>;
   }
 
+  const renderErrorMessage = isError && <Error>로그인 도중 문제가 발생했습니다. 관리자에게 문의하세요!</Error>
+
   return (
       <Form>
         <h2>로그인</h2>
@@ -47,7 +49,7 @@ function SignIn(props) {
         <Button onClick={postSignIn}>로그인</Button>
 
         <Link to={SignUp.routeName}>회원가입</Link>
-        {isError && <Error>로그인 도중 문제가 발생했습니다. 관리자에게 문의하세요!</Error>}
+        {renderErrorMessage}
       </Form>
   );
 }
