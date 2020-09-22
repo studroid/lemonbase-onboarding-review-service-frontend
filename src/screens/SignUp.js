@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Error, Form, Input} from '../components/AuthForm';
+import {Button, Error, Form, Input} from '../components/StyledComponents';
 import {useHistory} from 'react-router-dom';
 import SignIn from './SignIn';
 import APIHandler from '../APIHandler';
