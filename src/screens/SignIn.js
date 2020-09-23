@@ -4,15 +4,18 @@ import {Link, Redirect, useHistory} from 'react-router-dom';
 import SignUp from './SignUp';
 import APIHandler from '../APIHandler';
 import ReviewList from './ReviewList';
-import {useAuth} from '../contexts/auth';
 import SuperComponent from '../super/SuperComponent';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectIsAuthenticated, setAuthentication} from '../redux/userSlice';
 
 function Component(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
 
-  const {isAuthenticated, setAuth} = useAuth();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+
   const history = useHistory();
 
   function postSignIn() {
@@ -21,7 +24,7 @@ function Component(props) {
       password,
     }).then(result => {
       if (result.status === 200) {
-        setAuth(true);
+        dispatch(setAuthentication(true));
         // Render again if this function is called, so <Redirect/> below is enough.
         // history.push(ReviewList.routeName);
       } else {
