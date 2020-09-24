@@ -44,7 +44,7 @@ function Component(props) {
         <h2>ReviewUpdate{id}</h2>
         <ReviewDetail buttonName='수정하기' onSubmitClicked={onUpdateClicked}
                       defaultData={props.location.state.defaultData}/>
-        <SmallButton onClick={onDeleteClick}>삭제하기</SmallButton>
+        <SmallButton danger onClick={onDeleteClick}>삭제하기</SmallButton>
         {isError && <Error>처리 도중 문제가 발생했습니다. 입력을 다시 확인하세요!</Error>}
       </div>
   );
@@ -57,5 +57,5 @@ const ReviewUpdate = {
   routeBase: routeBase,
   routeName: `${routeBase}/:id`,
   component: Component,
-}
+};
 export default ReviewUpdate;

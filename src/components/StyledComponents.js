@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import {Button as AntdButton} from 'antd';
+import React from 'react';
+
+const Button = props => <AntdButton type='primary' {...props}>{props.children}</AntdButton>;
 
 const Form = styled.div`
   display: flex;
@@ -8,18 +12,6 @@ const Form = styled.div`
 
 const Input = styled.input`
   padding: 1rem;
-`;
-
-const Button = styled.button`
-  background: linear-gradient(to bottom, #6371c7, #5563c1);
-  border-color: #3f4eae;
-  border-radius: 3px;
-  padding: 1rem;
-  color: white;
-  font-weight: 700;
-  width: 100%;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
 `;
 
 const SmallButton = styled(Button)`
