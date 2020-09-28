@@ -3,16 +3,16 @@ import {createSlice} from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated')),
+    authData: JSON.parse(localStorage.getItem('authData')),
   },
   reducers: {
     setAuthentication: (state, action) => {
-      state.isAuthenticated = action.payload;
+      state.authData = action.payload;
     },
   },
 });
 
-export const selectIsAuthenticated = state => state.user.isAuthenticated;
+export const selectAuthData = state => state.user.authData;
 
 export const {setAuthentication} = userSlice.actions;
 

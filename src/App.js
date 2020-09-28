@@ -26,8 +26,8 @@ function App(props) {
   });
 
   store.subscribe(() => {
-    const {isAuthenticated} = store.getState().user;
-    localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated));
+    const {authData} = store.getState().user;
+    localStorage.setItem('authData', JSON.stringify(authData));
   });
 
   return (
