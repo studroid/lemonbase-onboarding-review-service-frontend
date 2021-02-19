@@ -40,14 +40,14 @@ function Component(props) {
   }, []);
 
   return (
-      <div>
+      <>
         <h2>ReviewList</h2>
         <Table labels={labels} items={list} onItemClick={onPolicyClicked}/>
         <Link to={ReviewCreate.routeName}>
           <SmallButton>리뷰 정책 생성</SmallButton>
         </Link>
         {isError && <Error>데이터를 가져오는 도중 문제가 발생했습니다. 관리자에게 문의하세요!</Error>}
-      </div>
+      </>
   );
 }
 
