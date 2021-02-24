@@ -1,11 +1,10 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import SignIn from './screens/SignIn';
-import {useSelector} from 'react-redux';
-import {selectAuthData} from './redux/userSlice';
+import {useUserStore} from "./zustand/userStore";
 
 function PrivateRoute({component: Component, ...rest}) {
-  const isAuthenticated = useSelector(selectAuthData);;
+  const isAuthenticated = useUserStore().authData.isAuthenticated;
   return (
       <Route {...rest} render={(props) =>
           isAuthenticated ? (
