@@ -5,17 +5,14 @@ import SignUp from './SignUp';
 import APIHandler from '../APIHandler';
 import ReviewList from './ReviewList';
 import SuperComponent from '../super/SuperComponent';
-import {useDispatch, useSelector} from 'react-redux';
-import {selectAuthData, setAuthentication} from '../redux/userSlice';
+import {useUserStore} from "../zustand/userStore";
 
 function Component(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
 
-  const dispatch = useDispatch();
-  const authData = useSelector(selectAuthData);
-
+  const userStore = useUserStore();
   const history = useHistory();
 
   function postSignIn() {
@@ -24,7 +21,7 @@ function Component(props) {
       password,
     }).then(result => {
       if (result.status === 200) {
-        dispatch(setAuthentication({isAuthenticated: true, name: result.data.name}));
+        userStore.setAuthentication(true, result.data.name);
         // Render again if this function is called, so <Redirect/> below is enough.
         // history.push(ReviewList.routeName);
       } else {
@@ -35,7 +32,7 @@ function Component(props) {
     });
   }
 
-  if (authData && authData.isAuthenticated) {
+  if (userStore.authData && userStore.authData.isAuthenticated) {
     return <Redirect to={ReviewList.routeName}/>;
   }
 

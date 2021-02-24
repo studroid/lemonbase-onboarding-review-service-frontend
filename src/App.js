@@ -13,25 +13,10 @@ import ReviewList from './screens/ReviewList';
 import ReviewCreate from './screens/ReviewCreate';
 import ReviewUpdate from './screens/ReviewUpdate';
 import PrivateRoute from './PrivateRoute';
-import {Provider} from 'react-redux';
-import {configureStore} from '@reduxjs/toolkit';
-import userReducer from './redux/userSlice';
 import Navigation from './components/Navigation';
 
 function App(props) {
-  const store = configureStore({
-    reducer: {
-      user: userReducer,
-    },
-  });
-
-  store.subscribe(() => {
-    const {authData} = store.getState().user;
-    localStorage.setItem('authData', JSON.stringify(authData));
-  });
-
   return (
-      <Provider store={store}>
         <Router>
           <Navigation/>
 
@@ -49,7 +34,6 @@ function App(props) {
             </Route>
           </Switch>
         </Router>
-      </Provider>
   );
 }
 
