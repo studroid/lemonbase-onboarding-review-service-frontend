@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Form, Input, SmallButton} from './StyledComponents';
+import {useReviewStore} from "../zustand/reviewStore";
+import {useService} from "@xstate/react";
 
 function ReviewDetail(props) {
   const defaultData = props.defaultData || {};
   const [name, setName] = useState(defaultData.name || '');
   const [reviewees, setReviewees] = useState(defaultData.reviewees || []);
   const [question, setQuestion] = useState(defaultData.question || {title: '', description: ''});
+  const reviewStore = useReviewStore();
 
   function buildDetailData() {
+      console.log("RD :" + reviewStore.service.state.context.count);
     return {
       name,
       reviewees,

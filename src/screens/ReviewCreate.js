@@ -4,22 +4,29 @@ import ReviewDetail from '../components/ReviewDetail';
 import {Error} from '../components/StyledComponents';
 import ReviewList from './ReviewList';
 import SuperComponent from '../super/SuperComponent';
-import reviewMachine from "../xstate/reviewMachine";
 import {useMachine} from "@xstate/react";
+import {useReviewStore} from "../zustand/reviewStore";
+import reviewMachine from "../xstate/reviewMachine";
 
 function Component(props) {
-  const [reviewState, reviewSend] = useMachine(reviewMachine);
+  const [reviewState, reviewSend, service] = useMachine(reviewMachine);
+  const reviewStore = useReviewStore();
 
   useEffect(() => {
       if(reviewState.matches('success')) {
         history.push(ReviewList.routeName);
       }
-  })
+  });
+
+  useEffect(() => {
+      reviewStore.setService(service);
+      reviewStore.setMachine(reviewState, reviewSend);
+  }, [])
 
   const history = useHistory();
 
   function onSubmitClicked(detail_data) {
-      reviewSend('CALL', {apiType: 'create', detailData: detail_data});
+      service.send('CALL', {apiType: 'create', detailData: detail_data});
   }
 
   return (

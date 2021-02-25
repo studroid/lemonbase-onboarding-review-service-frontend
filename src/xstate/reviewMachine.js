@@ -1,27 +1,31 @@
 import APIHandler from "../APIHandler";
 import {Machine} from "xstate";
-import {reviewStore} from "../zustand/reviewStore";
+import {assign} from "@xstate/immer";
 
 export default Machine({
     id: "Review API",
     initial: 'idle',
+    context: {
+      count: 0
+    },
     states: {
         idle: {
             on: {
                 CALL: {
                     target: 'loading',
-                    actions: () => {
-                        console.log(reviewStore.getState().count);
-                        reviewStore.setState(state => ({count: state.count+1}));
-                    }
+                    actions:
+                        (context, event) => {
+                            console.log("CONT" + context.count);
+                        }
                 }
             }
         },
         loading: {
+            entry: assign((ctx) => ctx.count++),
             invoke: {
                 id: 'reviewCall',
                 src: (context, event) => {
-                    console.log(reviewStore.getState().count);
+                    console.log("CONT " + context.count);
                     if (event.apiType === 'create') {
                         return APIHandler.post('/policy/', event.detailData);
                     } else if(event.apiType === 'update') {
