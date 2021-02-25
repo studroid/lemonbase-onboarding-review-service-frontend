@@ -1,8 +1,8 @@
 import APIHandler from "../APIHandler";
-import {Machine} from "xstate";
 import {assign} from "@xstate/immer";
+import {createMachine, interpret, Machine} from "xstate";
 
-export default Machine({
+const reviewMachine = Machine({
     id: "Review API",
     initial: 'idle',
     context: {
@@ -55,3 +55,5 @@ export default Machine({
         }
     }
 })
+
+export default interpret(reviewMachine).start();

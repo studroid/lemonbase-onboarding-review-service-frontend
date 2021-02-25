@@ -4,12 +4,12 @@ import ReviewDetail from '../components/ReviewDetail';
 import {Error} from '../components/StyledComponents';
 import ReviewList from './ReviewList';
 import SuperComponent from '../super/SuperComponent';
-import {useMachine} from "@xstate/react";
+import {useMachine, useService} from "@xstate/react";
 import {useReviewStore} from "../zustand/reviewStore";
 import reviewMachine from "../xstate/reviewMachine";
 
 function Component(props) {
-  const [reviewState, reviewSend, service] = useMachine(reviewMachine);
+  const [reviewState, reviewSend] = useService(reviewMachine);
   const reviewStore = useReviewStore();
 
   useEffect(() => {
@@ -19,14 +19,14 @@ function Component(props) {
   });
 
   useEffect(() => {
-      reviewStore.setService(service);
+      // reviewStore.setService(service);
       reviewStore.setMachine(reviewState, reviewSend);
   }, [])
 
   const history = useHistory();
 
   function onSubmitClicked(detail_data) {
-      service.send('CALL', {apiType: 'create', detailData: detail_data});
+      reviewSend('CALL', {apiType: 'create', detailData: detail_data});
   }
 
   return (
